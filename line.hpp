@@ -14,7 +14,7 @@ class Line {
         
     public:
         Line(string _name);
-        void add_station(Station &s);
+        void add_station(Station* s);
         Station* first_station();
         Station* last_station();
         list<Station*>::iterator first();

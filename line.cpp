@@ -2,8 +2,8 @@
 
 Line::Line(string name) : name_(name) {}
 
-void Line::add_station(Station &s) {
-    station_list.push_back(&s);
+void Line::add_station(Station* s) {
+    station_list.push_back(s);
 }
 
 Station* Line::first_station() {

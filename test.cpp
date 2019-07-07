@@ -10,28 +10,52 @@ int main() {
     Station koeln("Köln", 50, 0);
     Station siegen("Siegen", 150, 0);
     Station we("Welschen-Ennest", 150, 20);
+    Station dus("Düsseldorf", 50, 40);
+    Station fra("Frankfurt", 180, -50);
 
     cout << "<<< Drawing lines... >>>" << endl;
-    Line re9("RE9/RE16");
-    re9.add_station(aachen);
-    re9.add_station(koeln);
-    re9.add_station(siegen);
-    re9.add_station(we);
+    Line re9("RE9");
+    re9.add_station(&aachen);
+    re9.add_station(&koeln);
+    re9.add_station(&siegen);
+    
+    Line rb91("RB91");
+    rb91.add_station(&siegen);
+    rb91.add_station(&fra);
+
+    Line re16("RE16");
+    re16.add_station(&siegen);
+    re16.add_station(&we);
+
+    Line rrx("RRX");
+    rrx.add_station(&aachen);
+    rrx.add_station(&koeln);
+    rrx.add_station(&dus);
+
 
 
     cout << "<<< Assembling trains... >>>" << endl << endl;
-    Train rsx("RSX", re9, 1);
+    Train train_1("RSX", re9, 1);
+    Train train_2("91", rb91, 1);
+    Train train_3("16", re16, 1);
+    Train train_4("RRX", rrx, 1);
 
     cout << "<<< STARTING SIMULATION... >>>" << endl << endl;
-    rsx.init();
+    train_1.init();
+    train_2.init();
+    train_3.init();
+    train_4.init();
     timespec time;
-    time.tv_sec = 0;
-    time.tv_nsec = 1000000000L;
+    time.tv_sec = 1;
+    time.tv_nsec = 0;
     float cur_time = 0;
     while(1) {
         nanosleep(&time, NULL);
-        //cout << "Current time: " << ++cur_time << endl;
-        rsx.update(1.0f);
+        cout << "Current time: " << ++cur_time << endl;
+        train_1.update(1.0f);
+        train_2.update(1.0f);
+        train_3.update(1.0f);
+        train_4.update(1.0f);
         
     }
     return 0;
