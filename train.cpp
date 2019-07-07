@@ -30,7 +30,7 @@ void Train::init() {
 void Train::update(float time_step) {
     if(do_update) {
         distance_to_next_station -= speed*time_step;
-        if(fabs(distance_to_next_station) < 0.0001) {
+        if(distance_to_next_station < speed*time_step) { // Distance resolution = speed*time_step
             if(*next_station_iter == line.last_station() || *next_station_iter == line.first_station()) {
                 cout << "Train " << name_ << " reached last station " << (*next_station_iter)->name() << " of line " << line.name() << ". ";
                 //do_update = false;
