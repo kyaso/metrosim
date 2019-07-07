@@ -13,5 +13,8 @@ train: train.cpp
 util: util.cpp
 	g++ -c util.cpp
 
+run-test: all
+	./test
+
 clean:
-	rm *.o
+	rm *.o test
