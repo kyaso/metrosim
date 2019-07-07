@@ -5,6 +5,8 @@
 #include "station.hpp"
 
 #define DEFAULT_SPEED 1
+#define FORWARD true
+#define BACKWARD false
 
 class Train {
     private:
@@ -15,9 +17,10 @@ class Train {
         Station* prev_station;
         float distance_to_next_station;
         float speed;
+        bool dir = FORWARD;
         bool do_update = true;
 
-        void update_next_station();
+        void update_next_station(bool dir);
         
 
     public:
