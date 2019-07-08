@@ -36,7 +36,12 @@ void Train::update(float time_step) {
                 //do_update = false;
                 dir = !dir;
                 update_next_station(dir);
-                cout << "Returning. Next --> " << (*next_station_iter)->name() << endl;
+                cout << "Returning to ";
+                if(dir == FORWARD)
+                    cout << line.last_station()->name();
+                else
+                    cout << line.first_station()->name();
+                cout << ". Next --> " << (*next_station_iter)->name() << endl;
             }
             else {
                 cout << "Train " << name_ << " arrived at " << (*next_station_iter)->name() << ". ";
