@@ -1,6 +1,7 @@
 #include "line.hpp"
 
-Line::Line(string name) : name_(name) {}
+Line::Line(std::string name) : Object(name) {
+}
 
 void Line::add_station(Station* s) {
     station_list.push_back(s);
@@ -14,7 +15,7 @@ Station* Line::last_station() {
     return station_list.back();
 }
 
-list<Station*>::iterator Line::first() {
+std::list<Station*>::iterator Line::first() {
     return station_list.begin();
 }
 

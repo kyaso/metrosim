@@ -8,12 +8,11 @@
 #define FORWARD true
 #define BACKWARD false
 
-class Train {
+class Train : public Object {
     private:
-        std::string name_;
         Line &line;
         //Station& next_station;
-        list<Station*>::iterator next_station_iter;
+        std::list<Station*>::iterator next_station_iter;
         Station* prev_station;
         float distance_to_next_station;
         float speed;
@@ -25,7 +24,6 @@ class Train {
 
     public:
         Train(std::string name, Line &_line, float _speed=DEFAULT_SPEED);
-        std::string name() { return name_; };
         void init();
         void update(float time_step);
         

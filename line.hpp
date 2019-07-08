@@ -1,24 +1,21 @@
 # pragma once
 
 #include <list>
+#include "util.hpp"
 #include "station.hpp"
 #include <string>
 
-using namespace std;
-
-class Line {
+class Line : public Object {
     private:
-        string name_;
-        list<Station*> station_list;
+        std::list<Station*> station_list;
         
         
     public:
-        Line(string _name);
+        Line(std::string _name);
         void add_station(Station* s);
         Station* first_station();
         Station* last_station();
-        list<Station*>::iterator first();
+        std::list<Station*>::iterator first();
         int num_stations();
-        string name() { return name_; };
 
 };
