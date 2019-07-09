@@ -16,4 +16,4 @@ struct Coord {
     int y;
 };
 
-float dist(Coord a, Coord b);
+float dist(Coord *a, Coord *b);
