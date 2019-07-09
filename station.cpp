@@ -8,3 +8,8 @@ Station::Station(std::string name, int _x, int _y) : Object(name) {
 Coord Station::loc() {
     return location;
 }
+
+float Station::dist_to(Station *target) {
+    Coord target_loc = target->loc();
+    return dist(&location, &target_loc);
+}

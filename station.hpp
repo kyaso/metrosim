@@ -10,4 +10,5 @@ class Station : public Object {
     public:
         Station(std::string name, int _x, int _y);
         Coord loc();
+        float dist_to(Station *target);
 };

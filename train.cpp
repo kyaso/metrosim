@@ -17,7 +17,7 @@ void Train::update_next_station(bool dir) {
         next_station_iter++;
     else
         next_station_iter--;
-    distance_to_next_station = dist(prev_station->loc(), (*next_station_iter)->loc());
+    distance_to_next_station = prev_station->dist_to(*next_station_iter);
 }
 
 void Train::init() {
