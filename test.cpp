@@ -4,6 +4,11 @@
 #include "line.hpp"
 #include "train.hpp"
 
+#define SLEEP 250000000L
+#define TIME_STEP 1.0f
+
+using namespace std;
+
 int main() {
     cout << "<<< Building stations... >>>" << endl;
     Station aachen("Aachen", 0, 0);
@@ -36,26 +41,26 @@ int main() {
 
     cout << "<<< Assembling trains... >>>" << endl << endl;
     Train train_1("RSX", re9, 1);
-    Train train_2("91", rb91, 1);
+    Train train_2("91", rb91, 3);
     Train train_3("16", re16, 1);
     Train train_4("RRX", rrx, 1);
 
     cout << "<<< STARTING SIMULATION... >>>" << endl << endl;
     train_1.init();
-    train_2.init();
-    train_3.init();
-    train_4.init();
+    // train_2.init();
+    // train_3.init();
+    // train_4.init();
     timespec time;
-    time.tv_sec = 1;
-    time.tv_nsec = 0;
+    time.tv_sec = 0;
+    time.tv_nsec = SLEEP;
     float cur_time = 0;
     while(1) {
         nanosleep(&time, NULL);
         cout << "Current time: " << ++cur_time << endl;
-        train_1.update(1.0f);
-        train_2.update(1.0f);
-        train_3.update(1.0f);
-        train_4.update(1.0f);
+        train_1.update(TIME_STEP);
+        // train_2.update(TIME_STEP);
+        // train_3.update(TIME_STEP);
+        // train_4.update(TIME_STEP);
         
     }
     return 0;
