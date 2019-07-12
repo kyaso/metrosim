@@ -3,8 +3,17 @@
 #include "station.hpp"
 #include "line.hpp"
 #include "train.hpp"
+#include "event.hpp"
+
+using namespace std;
+
+#define TIME_STEP 1.0f
+
+EventList* events;
 
 int main() {
+    events = new EventList();
+
     cout << "<<< Building stations... >>>" << endl;
     Station aachen("Aachen", 0, 0);
     Station koeln("Köln", 50, 0);
@@ -42,21 +51,22 @@ int main() {
 
     cout << "<<< STARTING SIMULATION... >>>" << endl << endl;
     train_1.init();
-    train_2.init();
+    // train_2.init();
     train_3.init();
     train_4.init();
     timespec time;
-    time.tv_sec = 1;
-    time.tv_nsec = 0;
+    time.tv_sec = 0;
+    time.tv_nsec = 200000000;
     float cur_time = 0;
     while(1) {
         nanosleep(&time, NULL);
-        cout << "Current time: " << ++cur_time << endl;
-        train_1.update(1.0f);
-        train_2.update(1.0f);
-        train_3.update(1.0f);
-        train_4.update(1.0f);
+        //cout << "Current time: " << cur_time << endl;
+        events->handle(cur_time);
+        cur_time += TIME_STEP;;
         
     }
+
+    delete events;
+
     return 0;
 }
