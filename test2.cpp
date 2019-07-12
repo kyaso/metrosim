@@ -4,17 +4,16 @@
 #include "line.hpp"
 #include "train.hpp"
 #include "event.hpp"
+#include <chrono>
 
 using namespace std;
 
 #define TIME_STEP 1.0f
+#define NUM_STEPS 1000000
+#define NUM_TRAINS 1000
 
 EventList* events;
-
-#define SLEEP 250000000L
-#define TIME_STEP 1.0f
-
-using namespace std;
+Train* trains[NUM_TRAINS];
 
 int main() {
     events = new EventList();
@@ -46,32 +45,34 @@ int main() {
     rrx.add_station(&koeln);
     rrx.add_station(&dus);
 
-
-
     cout << "<<< Assembling trains... >>>" << endl << endl;
-    Train train_1("RSX", re9, 1);
-    Train train_2("91", rb91, 3);
-    Train train_3("16", re16, 1);
-    Train train_4("RRX", rrx, 1);
+    for(int i = 0; i < NUM_TRAINS; i++) {
+        trains[i] = new Train("RSX", re9, 1);
+    }
+
+    // Start time measure
+    auto start = std::chrono::high_resolution_clock::now();
 
     cout << "<<< STARTING SIMULATION... >>>" << endl << endl;
-    train_1.init();
-    // train_2.init();
-    train_3.init();
-    train_4.init();
+    for(int i = 0; i < NUM_TRAINS; i++) {
+        trains[i]->init();
+    }
+
     timespec time;
     time.tv_sec = 0;
     time.tv_nsec = 200000000;
     float cur_time = 0;
-    while(1) {
-        nanosleep(&time, NULL);
+    for(int i = 0; i < NUM_STEPS; i++) {
+        //nanosleep(&time, NULL);
         //cout << "Current time: " << cur_time << endl;
         events->handle(cur_time);
         cur_time += TIME_STEP;;
         
     }
 
-    delete events;
-
-    return 0;
+    // Stop time measure
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = end - start;
+    long long microsecs = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+    cout << "Simulation done. Total time: " << microsecs << endl;
 }

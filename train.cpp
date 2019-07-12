@@ -20,9 +20,15 @@ void Train::update_next_station(bool dir) {
     distance_to_next_station = prev_station->dist_to(*next_station_iter);
 }
 
+void Train::update_next_station(float current_time, bool dir) {
+    update_next_station(dir);
+    next_station_arrival_time = current_time + (distance_to_next_station / speed); // TODO: Round
+    events->insert(new TrainArrivalEvent(this, next_station_arrival_time));
+}
+
 void Train::init() {
         cout << "Train " << name_ << " starting at " << (*next_station_iter)->name() << "; ";
-    update_next_station(FORWARD);
+    update_next_station(0, FORWARD);
         cout << "next station --> " << (*next_station_iter)->name() << endl;
 }
 
@@ -52,4 +58,24 @@ void Train::update(float time_step) {
         }
     }
     
+}
+
+void Train::arrival_handler(float current_time) {
+    if(*next_station_iter == line.last_station() || *next_station_iter == line.first_station()) {
+        cout << "Train " << name_ << " reached end station " << (*next_station_iter)->name() << " of line " << line.name() << ". ";
+        //do_update = false;
+        dir = !dir;
+        update_next_station(current_time, dir);
+        cout << "Returning to ";
+        if(dir == FORWARD)
+            cout << line.last_station()->name();
+        else
+            cout << line.first_station()->name();
+        cout << ". Next --> " << (*next_station_iter)->name() << endl;
+    }
+    else {
+        cout << "Train " << name_ << " arrived at " << (*next_station_iter)->name() << ". ";
+        update_next_station(current_time, dir);
+        cout << "Next --> " << (*next_station_iter)->name() << endl;
+    }
 }
