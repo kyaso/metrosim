@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "util.hpp"
 #include "train.hpp"
 
 class Train;
@@ -11,8 +12,8 @@ class Event {
     
     public:
         Event(float _time);
-        virtual ~Event() {/*std::cout << "Destructor for Event called" << std::endl;*/};
-        virtual void handle(float current_time) = 0;
+        virtual ~Event() {DBG("Event destructor");};
+        virtual void handle(float current_time) {DBG("Event handler");};
         bool operator<(const Event &other) const;
         float time() const {return m_time;};
 };
@@ -23,7 +24,7 @@ class TrainArrivalEvent : public Event {
 
     public:
         TrainArrivalEvent(Train *train, float arrival_time);
-        ~TrainArrivalEvent() {/*std::cout << "Destructor for TrainArrivalEvent called" << std::endl;*/}
+        ~TrainArrivalEvent() {DBG("TrainArrivalEvent destructor");}
         void handle(float current_time);
 };
 
@@ -33,6 +34,7 @@ class EventList {
         std::list<Event*>::iterator pop();
 
     public:
-        void insert(Event* event);
+        ~EventList();
+        void insert(Event *event);
         void handle(float current_time);
 };

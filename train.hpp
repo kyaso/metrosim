@@ -30,7 +30,7 @@ class Train : public Object {
 
     public:
         Train(std::string name, Line &_line, float _speed=DEFAULT_SPEED);
-        ~Train() {std::cout << "Destructor for Train called" << std::endl;}
+        ~Train() {DBG("Train destructor");}
         void init();
         void update(float time_step);
         void arrival_handler(float current_time);
