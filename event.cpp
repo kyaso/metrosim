@@ -1,6 +1,7 @@
 #include "event.hpp"
 
 Event::Event(float _time) {
+    DBG("Event constructor");
     m_time = _time;
 }
 
@@ -9,11 +10,21 @@ bool Event::operator<(const Event &other) const {
 };
 
 TrainArrivalEvent::TrainArrivalEvent(Train *train, float arrival_time) : Event(arrival_time) {
+    DBG("TrainArrivalEvent constructor");
     m_train = train;
 }
 
 void TrainArrivalEvent::handle(float current_time) {
     m_train->arrival_handler(current_time);
+}
+
+EventList::~EventList() {
+    DBG("EventList destructor");
+    while(event_list.size() != 0) {
+        Event *evt =  event_list.front();
+        event_list.pop_front();
+        delete evt;
+    }
 }
 
 std::list<Event*>::iterator EventList::pop() {

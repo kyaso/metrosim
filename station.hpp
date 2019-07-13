@@ -9,6 +9,7 @@ class Station : public Object {
 
     public:
         Station(std::string name, int _x, int _y);
+        ~Station() {DBG("Station destructor");}
         Coord loc();
         float dist_to(Station *target);
 };

@@ -1,6 +1,5 @@
 #include "train.hpp"
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
@@ -22,7 +21,7 @@ void Train::update_next_station(bool dir) {
 
 void Train::update_next_station(float current_time, bool dir) {
     update_next_station(dir);
-    next_station_arrival_time = current_time + (distance_to_next_station / speed); // TODO: Round
+    next_station_arrival_time = ceil(current_time + (distance_to_next_station / speed)); // TODO: Round
     events->insert(new TrainArrivalEvent(this, next_station_arrival_time));
 }
 

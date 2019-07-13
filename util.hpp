@@ -2,6 +2,14 @@
 
 #include <cmath>
 #include <string>
+#include <iostream>
+
+#define DEBUG 0
+#if DEBUG
+#define DBG(str) do { std::cout << str << std::endl; } while(0)
+#else
+#define DBG(str) do { } while(0)
+#endif
 
 class Object {
     protected:
