@@ -29,7 +29,7 @@ class Train : public Object {
         
 
     public:
-        Train(std::string name, Line &_line, float _speed=DEFAULT_SPEED);
+        Train(unsigned int id, std::string name, Line &_line, float _speed=DEFAULT_SPEED);
         ~Train() {DBG("Train destructor");}
         void init();
         void update(float time_step);

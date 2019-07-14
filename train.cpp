@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Train::Train(string name, Line &_line, float _speed) : Object(name), line(_line) {
+Train::Train(unsigned int id, string name, Line &_line, float _speed) : Object(id, name), line(_line) {
     //next_station = line.first_station();
     next_station_iter = line.first();
     distance_to_next_station = 0;

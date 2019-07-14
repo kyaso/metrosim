@@ -13,9 +13,11 @@
 
 class Object {
     protected:
+        unsigned int id_;
         std::string name_;
     public:
-        Object(std::string name);
+        Object(unsigned int id, std::string name);
+        unsigned int id() const;
         std::string name() const;
 };
 

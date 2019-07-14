@@ -1,7 +1,12 @@
 #include "util.hpp"
 
-Object::Object(std::string name) {
+Object::Object(unsigned int id, std::string name) {
     name_ = name;
+    id_ = id;
+}
+
+unsigned int Object::id() const {
+    return id_;
 }
 
 std::string Object::name() const {

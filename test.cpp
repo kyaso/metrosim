@@ -20,28 +20,28 @@ int main() {
     events = new EventList();
 
     cout << "<<< Building stations... >>>" << endl;
-    Station aachen("Aachen", 0, 0);
-    Station koeln("Köln", 50, 0);
-    Station siegen("Siegen", 150, 0);
-    Station we("Welschen-Ennest", 150, 20);
-    Station dus("Düsseldorf", 50, 40);
-    Station fra("Frankfurt", 180, -50);
+    Station aachen(0, "Aachen", 0, 0);
+    Station koeln(1, "Köln", 50, 0);
+    Station siegen(2, "Siegen", 150, 0);
+    Station we(3, "Welschen-Ennest", 150, 20);
+    Station dus(4, "Düsseldorf", 50, 40);
+    Station fra(5, "Frankfurt", 180, -50);
 
     cout << "<<< Drawing lines... >>>" << endl;
-    Line re9("RE9");
+    Line re9(0, "RE9");
     re9.add_station(&aachen);
     re9.add_station(&koeln);
     re9.add_station(&siegen);
     
-    Line rb91("RB91");
+    Line rb91(1, "RB91");
     rb91.add_station(&siegen);
     rb91.add_station(&fra);
 
-    Line re16("RE16");
+    Line re16(2, "RE16");
     re16.add_station(&siegen);
     re16.add_station(&we);
 
-    Line rrx("RRX");
+    Line rrx(3, "RRX");
     rrx.add_station(&aachen);
     rrx.add_station(&koeln);
     rrx.add_station(&dus);
@@ -49,14 +49,14 @@ int main() {
 
 
     cout << "<<< Assembling trains... >>>" << endl << endl;
-    Train train_1("RSX", re9, 1);
-    Train train_2("91", rb91, 3);
-    Train train_3("16", re16, 1);
-    Train train_4("RRX", rrx, 1);
+    Train train_1(0, "RSX", re9, 1);
+    Train train_2(1, "91", rb91, 1);
+    Train train_3(2, "16", re16, 1);
+    Train train_4(3, "RRX", rrx, 1);
 
     cout << "<<< STARTING SIMULATION... >>>" << endl << endl;
     train_1.init();
-    // train_2.init();
+    train_2.init();
     train_3.init();
     train_4.init();
     timespec time;

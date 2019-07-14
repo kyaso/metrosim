@@ -1,6 +1,6 @@
 #include "station.hpp"
 
-Station::Station(std::string name, int _x, int _y) : Object(name) {
+Station::Station(unsigned int id, std::string name, int _x, int _y) : Object(id, name) {
     location.x = _x;
     location.y = _y;
 }

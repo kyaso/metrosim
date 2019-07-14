@@ -11,7 +11,7 @@ class Line : public Object {
         
         
     public:
-        Line(std::string _name);
+        Line(unsigned int id, std::string _name);
         ~Line() { DBG("Line destructor");}
         void add_station(Station* s);
         Station* first_station();

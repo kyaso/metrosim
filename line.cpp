@@ -1,6 +1,6 @@
 #include "line.hpp"
 
-Line::Line(std::string name) : Object(name) {
+Line::Line(unsigned int id, std::string name) : Object(id, name) {
 }
 
 void Line::add_station(Station* s) {
