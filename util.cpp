@@ -19,7 +19,7 @@ float dist(Coord *a, Coord *b) {
 
 Matrix::Matrix(unsigned _dim_y, unsigned _dim_x) : dim_y(_dim_y), dim_x(_dim_x) {
     DBG("Matrix constructor");
-    mat = new uint8_t[dim_y * dim_x];
+    mat = new uint[dim_y * dim_x];
 }
 
 Matrix::~Matrix() {
@@ -27,7 +27,7 @@ Matrix::~Matrix() {
     delete [] mat;
 }
 
-uint8_t Matrix::get_val(unsigned y, unsigned x) {
+uint Matrix::get_val(unsigned y, unsigned x) {
     if(y >= dim_y || x >= dim_x) {
         std::cerr << "ERROR (get_val): Invalid matrix indices: y = " << y << ", x = " << x << ". Matrix has dim (" << dim_y << ", " << dim_x << ")" << std::endl;
         return 0;
@@ -35,7 +35,7 @@ uint8_t Matrix::get_val(unsigned y, unsigned x) {
     return mat[y*dim_x + x];
 }
 
-void Matrix::set_val(unsigned y, unsigned x, uint8_t val) {
+void Matrix::set_val(unsigned y, unsigned x, uint val) {
     if(y >= dim_y || x >= dim_x) {
         std::cerr << "ERROR (set_val): Invalid matrix indices: y = " << y << ", x = " << x << ". Matrix has dim (" << dim_y << ", " << dim_x << ")" << std::endl;
         return;

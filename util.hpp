@@ -30,13 +30,14 @@ float dist(Coord *a, Coord *b);
 
 class Matrix {
     private:
-        uint8_t *mat;
+        uint *mat;
         unsigned dim_y;
         unsigned dim_x;
 
     public:
+        Matrix() {};
         Matrix(unsigned dim_y, unsigned dim_x);
         ~Matrix();
-        uint8_t get_val(unsigned y, unsigned x);
-        void set_val(unsigned y, unsigned x, uint8_t val);
+        uint get_val(unsigned y, unsigned x);
+        void set_val(unsigned y, unsigned x, uint val);
 };
