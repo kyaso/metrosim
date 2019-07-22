@@ -27,18 +27,31 @@ Matrix::~Matrix() {
     delete [] mat;
 }
 
-uint Matrix::get_val(unsigned y, unsigned x) {
+bool Matrix::indices_valid(unsigned y, unsigned x) {
     if(y >= dim_y || x >= dim_x) {
-        std::cerr << "ERROR (get_val): Invalid matrix indices: y = " << y << ", x = " << x << ". Matrix has dim (" << dim_y << ", " << dim_x << ")" << std::endl;
-        return 0;
+        std::cerr << "ERROR: Invalid matrix indices: y = " << y << ", x = " << x << ". Matrix has dim (" << dim_y << ", " << dim_x << ")" << std::endl;
+        return false;
     }
+    else return true;
+}
+
+uint Matrix::get_val(unsigned y, unsigned x) {
+    if(!indices_valid(y, x))
+        return 0;
+    
     return mat[y*dim_x + x];
 }
 
 void Matrix::set_val(unsigned y, unsigned x, uint val) {
-    if(y >= dim_y || x >= dim_x) {
-        std::cerr << "ERROR (set_val): Invalid matrix indices: y = " << y << ", x = " << x << ". Matrix has dim (" << dim_y << ", " << dim_x << ")" << std::endl;
+    if(!indices_valid(y, x))
         return;
-    }
+    
     mat[y*dim_x + x] = val;
+}
+
+void Matrix::add_val(unsigned y, unsigned x, uint val) {
+    if(!indices_valid(y, x))
+        return;
+    
+    mat[y*dim_x + x] += val;
 }

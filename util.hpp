@@ -33,6 +33,7 @@ class Matrix {
         uint *mat;
         unsigned dim_y;
         unsigned dim_x;
+        bool indices_valid(unsigned y, unsigned x);
 
     public:
         Matrix() {};
@@ -40,4 +41,5 @@ class Matrix {
         ~Matrix();
         uint get_val(unsigned y, unsigned x);
         void set_val(unsigned y, unsigned x, uint val);
+        void add_val(unsigned y, unsigned x, uint val);
 };
