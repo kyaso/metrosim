@@ -34,5 +34,7 @@ class Train : public Object {
         void init();
         void update(float time_step);
         void arrival_handler(float current_time);
+        unsigned line_id() const { return line.id(); };
+        bool get_dir() const { return dir; };
         
 };
