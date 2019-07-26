@@ -55,3 +55,7 @@ void Matrix::add_val(unsigned y, unsigned x, uint val) {
     
     mat[y*dim_x + x] += val;
 }
+
+void Matrix::reset_val(unsigned y, unsigned x) {
+    mat[y*dim_x + x] = 0;
+}
