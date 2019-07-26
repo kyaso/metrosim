@@ -42,4 +42,6 @@ class Matrix {
         uint get_val(unsigned y, unsigned x);
         void set_val(unsigned y, unsigned x, uint val);
         void add_val(unsigned y, unsigned x, uint val);
+        unsigned get_dim_y() { return dim_y; };
+        unsigned get_dim_x() { return dim_x; };
 };
