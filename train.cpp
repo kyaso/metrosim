@@ -29,6 +29,7 @@ void Train::init() {
         cout << "Train " << name_ << " starting at " << (*next_station_iter)->name() << "; ";
     update_next_station(0, FORWARD);
         cout << "next station --> " << (*next_station_iter)->name() << endl;
+    router->transfer_passengers(this, prev_station);
 }
 
 void Train::update(float time_step) {
@@ -77,4 +78,6 @@ void Train::arrival_handler(float current_time) {
         update_next_station(current_time, dir);
         cout << "Next --> " << (*next_station_iter)->name() << endl;
     }
+
+    router->transfer_passengers(this, prev_station);
 }

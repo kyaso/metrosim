@@ -4,13 +4,17 @@
 #include "line.hpp"
 #include "station.hpp"
 #include "event.hpp"
+#include "router.hpp"
 
 #define DEFAULT_SPEED 1
 #define FORWARD true
 #define BACKWARD false
 
 class EventList;
+class Router;
+
 extern EventList* events;
+extern Router* router;
 
 class Train : public Object {
     private:
