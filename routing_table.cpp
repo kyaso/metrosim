@@ -8,6 +8,11 @@ RoutingTable::~RoutingTable() {
     routing_table.clear();
 }
 
+bool RoutingTable::line_dir_key_exists(uint line_id, bool dir) {
+    line_dir_key_t key(line_id, dir);
+    return routing_table.find(key) != routing_table.end();
+}
+
 void RoutingTable::add_line_dir_key(uint line_id, bool dir) {
     if(!line_dir_key_exists(line_id, dir)) {
         DBG("Adding line-dir key: (" << line_id << ", " << dir << ")");
