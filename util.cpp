@@ -20,6 +20,9 @@ float dist(Coord *a, Coord *b) {
 Matrix::Matrix(unsigned _dim_y, unsigned _dim_x) : dim_y(_dim_y), dim_x(_dim_x) {
     DBG("Matrix constructor");
     mat = new uint[dim_y * dim_x];
+    for(int i = 0; i < dim_y*dim_x; i++) {
+        mat[i] = 0;
+    }
 }
 
 Matrix::~Matrix() {
